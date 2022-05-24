@@ -1,4 +1,4 @@
-import 'package:venda_produtos_eletronicos/VendaController.dart';
-import 'package:test/test.dart';
+import '../lib/VendaController.dart';
+import '../test/venda_produtos_eletronicos_test.dart';
 
 void main() {}
