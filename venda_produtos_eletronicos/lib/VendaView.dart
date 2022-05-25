@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'dart:js_util';
+import 'package:venda_produtos_eletronicos/ItensProduto.dart';
+
 import 'Produto.dart';
 import 'VendaController.dart' as VendaController;
 import 'ValidacoesExtras.dart' as ValidacoesExtras;
 
-List<Produto> produtos = [];
+List<ItensProduto> itensProdutos = [];
 late double descontoVenda;
 
 void aoComecar() {
@@ -12,7 +13,7 @@ void aoComecar() {
   print(executarAcao(controlarAcao));
 }
 
-String acoesComProdutos(List<Produto> produtos, Function funcao) {
+String acoesComProdutos(List<ItensProduto> produtos, Function funcao) {
   return funcao(produtos);
 }
 
@@ -35,18 +36,18 @@ String executarAcao(int controlarAcao) {
     if (controlarAcao == 0) {
       resultado = "Fechando a loja";
     } else if (controlarAcao == 1) {
-      produtos.add(inserirProduto());
+      itensProdutos.add(inserirProduto());
     } else if (controlarAcao == 2) {
       descontoVenda = ValidacoesExtras.retornaEValidaValorDouble(digiteValor());
     } else if (controlarAcao == 3) {
       print(
-          "A soma dos valores dos produtos é: R\$ ${acoesComProdutos(produtos, VendaController.calcularValorProdutos)}");
+          "A soma dos valores dos produtos é: R\$ ${acoesComProdutos(itensProdutos, VendaController.calcularValorProdutos)}");
     } else if (controlarAcao == 4) {
       if (descontoVenda != null) {
         VendaController.calcularValorVenda(
-            produtos: produtos, desconto: descontoVenda);
+            itensProdutos: itensProdutos, descontoVenda: descontoVenda);
       } else {
-        acoesComProdutos(produtos, VendaController.calcularValorVenda);
+        acoesComProdutos(itensProdutos, VendaController.calcularValorVenda);
       }
     }
   }
@@ -64,11 +65,15 @@ String digiteValor() {
   return stdin.readLineSync()!;
 }
 
-Produto inserirProduto() {
+ItensProduto inserirProduto() {
   String nome = descricaoProduto();
   double valor = ValidacoesExtras.retornaEValidaValorDouble(digiteValor());
   Produto produto = Produto();
   produto.setNome(nome);
   produto.setValor(valor);
-  return produto;
+  ItensProduto itensProduto = ItensProduto();
+  itensProduto.setProduto(produto);
+  itensProduto.setQuantidadeProdutos(1);
+  itensProduto.setDescontoPorProduto(0.2);
+  return itensProduto;
 }

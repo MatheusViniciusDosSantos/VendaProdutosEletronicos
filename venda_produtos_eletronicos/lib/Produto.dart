@@ -3,7 +3,8 @@ class Produto {
   late String nome;
   late double valor;
   late double valorComissao;
-  late int quantidadeProdutos;
+  late double valorCusto;
+  late double descontoMaxProduto;
 
   // 'A' para ativo, 'I' para inativo
   late String status;
@@ -41,12 +42,20 @@ class Produto {
     this.valorComissao = valorComissao;
   }
 
-  int getQuantidadeProdutos() {
-    return quantidadeProdutos;
+  double getValorCusto() {
+    return valorCusto;
   }
 
-  void setQuantidadeProdutos(int quantidadeProdutos) {
-    this.quantidadeProdutos = quantidadeProdutos;
+  void setValorCusto(double valorCusto) {
+    this.valorCusto = valorCusto;
+  }
+
+  double getDescontoMaxProduto() {
+    return descontoMaxProduto;
+  }
+
+  void setDescontoMaxProduto(double descontoMaxProduto) {
+    this.descontoMaxProduto = descontoMaxProduto;
   }
 
   String getStatus() {
