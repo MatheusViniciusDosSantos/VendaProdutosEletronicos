@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:venda_produtos_eletronicos/Funcionario.dart';
-import 'package:venda_produtos_eletronicos/ItensProduto.dart';
+import 'Funcionario.dart';
+import 'ItensProduto.dart';
 
 import 'Produto.dart';
 

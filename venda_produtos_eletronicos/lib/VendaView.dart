@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:venda_produtos_eletronicos/ItensProduto.dart';
+import 'ItensProduto.dart';
 
 import 'Produto.dart';
 import 'VendaController.dart' as VendaController;
