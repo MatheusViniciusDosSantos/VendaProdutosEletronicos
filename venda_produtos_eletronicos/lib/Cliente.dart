@@ -1,49 +1,35 @@
 class Cliente {
-  late int id;
-  late String nome;
-  late String cpf;
+  late int _id;
+  late String _nome;
+  late String _cpf;
 
   // 'A' para ativo, 'I' para inativo
-  late String status;
-  late DateTime dataCadastro;
+  late String _status;
+  late DateTime _dataCadastro;
 
-  int getId() {
-    return id;
+  Cliente() {
+    _dataCadastro = DateTime.now();
   }
 
-  void setId(int id) {
-    this.id = id;
+  int get id => _id;
+
+  set id(int id) {
+    _id = id;
   }
 
-  String getNome() {
-    return nome;
+  String get nome => _nome;
+
+  set nome(String nome) {
+    _nome = nome;
   }
 
-  void setNome(String nome) {
-    this.nome = nome;
-  }
+  String get cpf => _cpf;
 
-  String getCpf() {
-    return cpf;
-  }
+  set cpf(String cpf) => _cpf = cpf;
 
-  void setCpf(String cpf) {
-    this.cpf = cpf;
-  }
+  String get status => _status;
 
-  String getStatus() {
-    return status;
-  }
+  set status(String status) => _status = status;
 
-  void setStatus(String status) {
-    this.status = status;
-  }
-
-  DateTime getDataCadastro() {
-    return dataCadastro;
-  }
-
-  void setDataCadastro(DateTime dataCadastro) {
-    this.dataCadastro = dataCadastro;
-  }
+  DateTime get dataCadastro => _dataCadastro;
 }

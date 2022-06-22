@@ -29,14 +29,14 @@ double calcularValorProdutos(List<ItensProduto> itensProdutos) {
   for (var itemProduto in itensProdutos) {
     late double precoProdutos;
 
-    itemProduto.getProduto().setValor(calcularDescontoProduto(itemProduto));
-    if (itemProduto.getQuantidadeProdutos() > 1) {
-      precoProdutos = itemProduto.getProduto().getValor() *
-          itemProduto.getQuantidadeProdutos();
+    itemProduto.produto.valor = calcularDescontoProduto(itemProduto);
+    if (itemProduto.quantidadeProdutos > 1) {
+      precoProdutos = itemProduto.produto.valor *
+          itemProduto.quantidadeProdutos;
     } else {
-      precoProdutos = itemProduto.getProduto().getValor();
+      precoProdutos = itemProduto.produto.valor;
     }
-    itemProduto.setValorProdutos(precoProdutos);
+    itemProduto.valorProdutos = precoProdutos;
     valorTotal = valorTotal + precoProdutos;
   }
   return valorTotal;
@@ -45,9 +45,9 @@ double calcularValorProdutos(List<ItensProduto> itensProdutos) {
 //Função que va calcular o valor do produto com o desconto por produto
 double calcularDescontoProduto(ItensProduto itemProduto) {
   late double valorProdutoComDesconto;
-  double descontoProduto = itemProduto.getDescontoPorProduto();
-  double descontoMax = itemProduto.getProduto().getDescontoMaxProduto();
-  double valorProduto = itemProduto.getProduto().getValor();
+  double descontoProduto = itemProduto.descontoPorProduto;
+  double descontoMax = itemProduto.produto.descontoMaxProduto;
+  double valorProduto = itemProduto.produto.valor;
   if (descontoProduto <= descontoMax) {
     valorProdutoComDesconto = valorProduto - (descontoProduto * valorProduto);
   } else {
@@ -59,12 +59,12 @@ double calcularDescontoProduto(ItensProduto itemProduto) {
 //Função que vai validar o limite da comissão
 ItensProduto validarLimiteComissaoProduto(
     ItensProduto itensProduto, Funcionario funcionario) {
-  if (itensProduto.getProduto().getValor() != null) {
+  if (itensProduto.produto.valor != null) {
     late double comissao =
         calculaValorComissaoPorTipoFuncionario(funcionario, itensProduto);
     comissao = definirLimiteComissaoProduto(
-        comissao, itensProduto.getProduto().getValorCusto());
-    itensProduto.getProduto().setValorComissao(comissao);
+        comissao, itensProduto.produto.valorCusto);
+    itensProduto.produto.valorComissao = comissao;
     return itensProduto;
   }
   return itensProduto;
@@ -75,21 +75,21 @@ double calculaValorComissaoPorTipoFuncionario(
     Funcionario funcionario, ItensProduto itensProduto) {
   double comissao = 0.0;
 
-  if (funcionario.getContratacao() == "CONTRATADO") {
+  if (funcionario.tipoContratacao == "CONTRATADO") {
     comissao = calculaValorComissao(
         calculaValorComissaoPorQuantidadeProdutosFuncionarioContratado,
         itensProduto,
-        itensProduto.getQuantidadeProdutos());
-  } else if (funcionario.getContratacao() == "TEMPORARIO") {
+        itensProduto.quantidadeProdutos);
+  } else if (funcionario.tipoContratacao == "TEMPORARIO") {
     comissao = calculaValorComissao(
         calculaValorComissaoPorQuantidadeProdutosFuncionarioTemporario,
         itensProduto,
-        itensProduto.getQuantidadeProdutos());
-  } else if (funcionario.getContratacao() == "ESTAGIARIO") {
+        itensProduto.quantidadeProdutos);
+  } else if (funcionario.tipoContratacao == "ESTAGIARIO") {
     comissao = calculaValorComissao(
         //Função anônima que vai calcular o valor da comissão para um estagiário
         (ItensProduto itensProduto, int quantidadeProdutos) {
-      double valorProduto = itensProduto.getProduto().getValor();
+      double valorProduto = itensProduto.produto.valor;
       if (quantidadeProdutos >= 10) {
         return valorProduto * 0.01;
       } else if (quantidadeProdutos >= 20) {
@@ -97,17 +97,17 @@ double calculaValorComissaoPorTipoFuncionario(
       } else {
         return valorProduto * 0.003;
       }
-    }, itensProduto, itensProduto.getQuantidadeProdutos());
-  } else if (funcionario.getContratacao() == "TERCERIZADO") {
+    }, itensProduto, itensProduto.quantidadeProdutos);
+  } else if (funcionario.tipoContratacao == "TERCERIZADO") {
     comissao = calculaValorComissao(
         //Arrow function que vai definir o valor da comissão para um
         // funcionário tercerizado
         (ItensProduto itensProduto, double quantidadeProdutos) =>
             (quantidadeProdutos > 40
-                ? itensProduto.getProduto().getValor() * 0.005
+                ? itensProduto.produto.valor * 0.005
                 : 0.0),
         itensProduto,
-        itensProduto.getQuantidadeProdutos());
+        itensProduto.quantidadeProdutos);
   }
   return comissao;
 }

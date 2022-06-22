@@ -1,78 +1,53 @@
 class Produto {
-  late int id;
-  late String nome;
-  late double valor;
-  late double valorComissao;
-  late double valorCusto;
-  late double descontoMaxProduto;
+  late int _id;
+  late String _nome;
+  late double _valor;
+  late double _valorComissao;
+  late double _valorCusto;
+  late double _descontoMaxProduto;
+  late double _descontoProdutoMax;
 
   // 'A' para ativo, 'I' para inativo
-  late String status;
-  late DateTime dataCadastro;
+  late String _status;
+  late DateTime _dataCadastro;
 
-  int getId() {
-    return id;
+  Produto(this._nome) {
+    _dataCadastro = DateTime.now();
   }
 
-  void setId(int id) {
-    this.id = id;
+  int get id => _id;
+
+  set id(int id) {
+    _id = id;
   }
 
-  String getNome() {
-    return nome;
+  String get nome => _nome;
+
+  set nome(String nome) {
+    _nome = nome;
   }
 
-  void setNome(String nome) {
-    this.nome = nome;
-  }
+  double get valor => valor;
 
-  double getValor() {
-    return valor;
-  }
+  set valor(double valor) => _valor = valor;
 
-  void setValor(double valor) {
-    this.valor = valor;
-  }
+  double get valorComissao => _valorComissao;
 
-  double getValorComissao() {
-    return valorComissao;
-  }
+  set valorComissao(double valorComissao) => _valorComissao = valorComissao;
 
-  void setValorComissao(double valorComissao) {
-    this.valorComissao = valorComissao;
-  }
+  double get valorCusto => _valorCusto;
 
-  double getValorCusto() {
-    return valorCusto;
-  }
+  set valorCusto(double valorCusto) => _valorCusto = valorCusto;
+  
+  double get descontoMaxProduto => _descontoMaxProduto;
 
-  void setValorCusto(double valorCusto) {
-    this.valorCusto = valorCusto;
-  }
+  void set descontoMaxProduto(double descontoMaxProduto) => _descontoMaxProduto = descontoMaxProduto;
 
-  double getDescontoMaxProduto() {
-    return descontoMaxProduto;
-  }
+  String get status => _status;
 
-  void setDescontoMaxProduto(double descontoMaxProduto) {
-    this.descontoMaxProduto = descontoMaxProduto;
-  }
+  void set status(String status) => _status = status;
 
-  String getStatus() {
-    return status;
-  }
-
-  void setStatus(String status) {
-    this.status = status;
-  }
-
-  DateTime getDataCadastro() {
-    return dataCadastro;
-  }
-
-  void setDataCadastro(DateTime dataCadastro) {
-    this.dataCadastro = dataCadastro;
-  }
+  DateTime get dataCadastro => _dataCadastro;
 
   @override
   String toString() {

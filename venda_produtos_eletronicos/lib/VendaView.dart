@@ -68,12 +68,11 @@ String digiteValor() {
 ItensProduto inserirProduto() {
   String nome = descricaoProduto();
   double valor = ValidacoesExtras.retornaEValidaValorDouble(digiteValor());
-  Produto produto = Produto();
-  produto.setNome(nome);
-  produto.setValor(valor);
+  Produto produto = Produto(nome);
+  produto.valor = valor;
   ItensProduto itensProduto = ItensProduto();
-  itensProduto.setProduto(produto);
-  itensProduto.setQuantidadeProdutos(1);
-  itensProduto.setDescontoPorProduto(0.2);
+  itensProduto.produto = produto;
+  itensProduto.quantidadeProdutos = 1;
+  itensProduto.descontoPorProduto = 0.2;
   return itensProduto;
 }

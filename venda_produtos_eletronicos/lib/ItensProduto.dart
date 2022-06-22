@@ -1,41 +1,24 @@
 import 'Produto.dart';
 
 class ItensProduto {
-  late Produto produto;
-  late int quantidadeProdutos;
-  late double valorProdutos;
-  late double descontoPorProduto;
+  late Produto _produto;
+  late int _quantidadeProdutos;
+  late double _valorProdutos;
+  late double _descontoPorProduto;
 
-  Produto getProduto() {
-    return produto;
-  }
+  Produto get produto => _produto;
 
-  void setProduto(Produto produto) {
-    this.produto = produto;
-  }
+  set produto(Produto produto) => _produto = produto;
 
-  int getQuantidadeProdutos() {
-    return quantidadeProdutos;
-  }
+  int get quantidadeProdutos => _quantidadeProdutos;
 
-  void setQuantidadeProdutos(int quantidadeProdutos) {
-    this.quantidadeProdutos = quantidadeProdutos;
-  }
+  set quantidadeProdutos(int quantidadeProdutos) => _quantidadeProdutos = quantidadeProdutos;
 
-  double getValorProdutos() {
-    return valorProdutos;
-  }
+  double get valorProdutos => _valorProdutos;
 
-  void setValorProdutos(double valorProdutos) {
-    this.valorProdutos = valorProdutos;
-  }
+  set valorProdutos(double valorProdutos) => _valorProdutos = valorProdutos;
 
-  double getDescontoPorProduto() {
-    return descontoPorProduto;
-  }
+  double get descontoPorProduto => _descontoPorProduto;
 
-  void setDescontoPorProduto(double descontoPorProduto) {
-    this.descontoPorProduto = descontoPorProduto;
-  }
-
+  set descontoPorProduto(double descontoPorProduto)=> _descontoPorProduto = descontoPorProduto;
 }
