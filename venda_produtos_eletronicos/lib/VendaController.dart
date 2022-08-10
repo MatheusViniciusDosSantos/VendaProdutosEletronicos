@@ -31,8 +31,8 @@ double calcularValorProdutos(List<ItensProduto> itensProdutos) {
 
     itemProduto.produto.valor = calcularDescontoProduto(itemProduto);
     if (itemProduto.quantidadeProdutos > 1) {
-      precoProdutos = itemProduto.produto.valor *
-          itemProduto.quantidadeProdutos;
+      precoProdutos =
+          itemProduto.produto.valor * itemProduto.quantidadeProdutos;
     } else {
       precoProdutos = itemProduto.produto.valor;
     }
@@ -62,8 +62,8 @@ ItensProduto validarLimiteComissaoProduto(
   if (itensProduto.produto.valor != null) {
     late double comissao =
         calculaValorComissaoPorTipoFuncionario(funcionario, itensProduto);
-    comissao = definirLimiteComissaoProduto(
-        comissao, itensProduto.produto.valorCusto);
+    comissao =
+        definirLimiteComissaoProduto(comissao, itensProduto.produto.valorCusto);
     itensProduto.produto.valorComissao = comissao;
     return itensProduto;
   }
@@ -123,7 +123,7 @@ double calculaValorComissao(
 double calculaValorComissaoPorQuantidadeProdutosFuncionarioContratado(
     ItensProduto itensProduto, int quantidadeProdutos) {
   double comissao = 0.0;
-  double valorProduto = itensProduto.getProduto().getValor();
+  double valorProduto = itensProduto.produto.valor;
   if (quantidadeProdutos >= 5) {
     comissao = valorProduto * 0.01;
   } else if (quantidadeProdutos >= 10) {
@@ -140,7 +140,7 @@ double calculaValorComissaoPorQuantidadeProdutosFuncionarioContratado(
 double calculaValorComissaoPorQuantidadeProdutosFuncionarioTemporario(
     ItensProduto itensProduto, int quantidadeProdutos) {
   double comissao = 0.0;
-  double valorProduto = itensProduto.getProduto().getValor();
+  double valorProduto = itensProduto.produto.valor;
   if (quantidadeProdutos >= 5) {
     comissao = valorProduto * 0.005;
   } else if (quantidadeProdutos >= 10) {
@@ -173,8 +173,8 @@ double retornarDescontoDoDiaComOferta(
     double porcentagemDeDesconto = 0.01,
     required DateTime dataComOferta}) {
   if (DateTime.now().weekday == dataComOferta.weekday &&
-      produto.getValor() > valorMinimoParaDesconto) {
-    return produto.getValor() * porcentagemDeDesconto;
+      produto.valor > valorMinimoParaDesconto) {
+    return produto.valor * porcentagemDeDesconto;
   } else {
     return 0.0;
   }
