@@ -120,18 +120,20 @@ double calculaValorComissao(
 
 //Função que vai calcular o valor da comissão do funcionário por quantidade de
 // produtos vendidos para funcionários contratados
-double calculaValorComissaoPorQuantidadeProdutosFuncionarioContratado(
+dynamic calculaValorComissaoPorQuantidadeProdutosFuncionarioContratado(
     ItensProduto itensProduto, int quantidadeProdutos) {
   double comissao = 0.0;
   double valorProduto = itensProduto.produto.valor;
-  if (quantidadeProdutos >= 5) {
-    comissao = valorProduto * 0.01;
+  if (quantidadeProdutos >= 15) {
+    comissao = valorProduto * 0.04;
   } else if (quantidadeProdutos >= 10) {
     comissao = valorProduto * 0.02;
-  } else if (quantidadeProdutos >= 15) {
-    comissao = valorProduto * 0.04;
-  } else {
+  } else if (quantidadeProdutos >= 5) {
+    comissao = valorProduto * 0.01;
+  } else if (quantidadeProdutos >= 1) {
     comissao = valorProduto * 0.005;
+  } else {
+    return Exception("Valor tem que ser maior que 0");
   }
   return comissao;
 }

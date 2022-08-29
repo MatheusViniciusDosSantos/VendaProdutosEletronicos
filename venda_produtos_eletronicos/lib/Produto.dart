@@ -5,7 +5,6 @@ class Produto {
   late double _valorComissao;
   late double _valorCusto;
   late double _descontoMaxProduto;
-  late double _descontoProdutoMax;
 
   // 'A' para ativo, 'I' para inativo
   late String _status;
@@ -27,7 +26,7 @@ class Produto {
     _nome = nome;
   }
 
-  double get valor => valor;
+  double get valor => _valor;
 
   set valor(double valor) => _valor = valor;
 
@@ -38,10 +37,11 @@ class Produto {
   double get valorCusto => _valorCusto;
 
   set valorCusto(double valorCusto) => _valorCusto = valorCusto;
-  
+
   double get descontoMaxProduto => _descontoMaxProduto;
 
-  void set descontoMaxProduto(double descontoMaxProduto) => _descontoMaxProduto = descontoMaxProduto;
+  void set descontoMaxProduto(double descontoMaxProduto) =>
+      _descontoMaxProduto = descontoMaxProduto;
 
   String get status => _status;
 
